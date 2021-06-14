@@ -27,9 +27,6 @@
                         <div class="sort-item orderby ">
                             <select name="orderby" class="use-chosen">
                                 <option value="menu_order" selected="selected">Sắp xếp mặc định</option>
-                                {{--                                <option value="popularity">Sort by popularity</option>--}}
-                                {{--                                <option value="rating">Sort by average rating</option>--}}
-                                {{--                                <option value="date">Sort by newness</option>--}}
                                 <option value="price">Sắp xếp giá cao -> thấp</option>
                                 <option value="price-desc">Sắp xếp giá thấp -> cao</option>
                             </select>
@@ -43,44 +40,44 @@
                             </select>
                         </div>
 
-                        {{--                        <div class="change-display-mode">--}}
-                        {{--                            <a href="#" class="grid-mode display-mode active"><i class="fa fa-th"></i>Grid</a>--}}
-                        {{--                            <a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a>--}}
-                        {{--                        </div>--}}
-
                     </div>
 
                 </div><!--end wrap shop control-->
-
+                @if($products->count() > 0)
+                <div style="margin-top: 10px">
+                 <p> <i>Tìm thây {{ $productsAll->count() }} sản phẩm</i></p>
+                </div>
                 <div class="row">
 
                     <ul class="product-list grid-products equal-container">
-                        @foreach($products as $pro)
-                            <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                                <div class="product product-style-3 equal-elem ">
-                                    <div class="product-thumnail">
-                                        <a href="{{route('product.detail', ['slug'=>$pro->slug])}}"
-                                           title="{{ $pro->name }}">
-                                            <figure><img src="{{asset('storage/'. $pro->feature_img_path)}}"
-                                                         alt="{{ $pro->name }}"></figure>
-                                        </a>
+
+                            @foreach($products as $pro)
+                                <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+                                    <div class="product product-style-3 equal-elem ">
+                                        <div class="product-thumnail">
+                                            <a href="{{route('product.detail', ['slug'=>$pro->slug])}}"
+                                               title="{{ $pro->name }}">
+                                                <figure><img src="{{asset('storage/'. $pro->feature_img_path)}}"
+                                                             alt="{{ $pro->name }}"></figure>
+                                            </a>
+                                        </div>
+                                        <div class="product-info">
+                                            <a href="{{route('product.detail', ['slug'=>$pro->slug])}}"
+                                               class="product-name"><span>{{$pro->name}}</span></a>
+                                            <div class="wrap-price"><span class="product-price"> @if($pro->sale_price > 0)
+                                                        <ins><p class="product-price">{{ number_format($pro->sale_price , 0, '.', '.')  }}</p></ins>
+                                                        <del><p class="product-price">{{ number_format($pro->regular_price , 0, '.', '.')  }}</p></del>
+                                                    @else
+                                                        <ins><p class="product-price">{{ number_format($pro->regular_price , 0, '.', '.')  }}</p></ins>
+                                                    @endif</span></div>
+                                            <a href="#" class="btn add-to-cart">Add To Cart</a>
+                                        </div>
                                     </div>
-                                    <div class="product-info">
-                                        <a href="{{route('product.detail', ['slug'=>$pro->slug])}}"
-                                           class="product-name"><span>{{$pro->name}}</span></a>
-                                        <div class="wrap-price"><span class="product-price"> @if($pro->sale_price > 0)
-                                                    <ins><p class="product-price">{{ number_format($pro->sale_price , 0, '.', '.')  }}</p></ins>
-                                                    <del><p class="product-price">{{ number_format($pro->regular_price , 0, '.', '.')  }}</p></del>
-                                                @else
-                                                    <ins><p class="product-price">{{ number_format($pro->regular_price , 0, '.', '.')  }}</p></ins>
-                                                @endif</span></div>
-                                        <a href="#" class="btn add-to-cart"
-                                           wire:click.prevent="store({{ $pro->id}}, '{{ $pro->name }}' , {{ $pro->regular_price }}, '{{ $pro->feature_img_path }}')">Add
-                                            To Cart</a>
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
+                                </li>
+                            @endforeach
+                        @else
+                            <p class="text-center">Không tìm thấy sản phẩm</p>
+                        @endif
                     </ul>
 
                 </div>
@@ -97,8 +94,7 @@
                         <ul class="list-category">
                             @foreach($categories as $cate)
                                 <li class="category-item text-uppercase">
-                                    <a href="{{ route('product.category', ['slug' => $cate->slug]) }}"
-                                       class="cate-link">{{ $cate->name }}</a>
+                                    <a href="#" class="cate-link">{{ $cate->name }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -108,6 +104,7 @@
                 <div class="widget mercado-widget widget-product">
                     <h2 class="widget-title">Sản phẩm phổ biến</h2>
                     <div class="widget-content">
+
                         <ul class="products">
                             @foreach($popular_product as $po_pro)
                                 <li class="product-item">
@@ -131,12 +128,11 @@
                                 </li>
                             @endforeach
                         </ul>
-                    </div>
-                </div><!-- brand widget-->
-
-            </div><!--end sitebar-->
-
-        </div><!--end row-->
+                    </div><!-- brand widget-->
+                </div>
+            </div>
+        </div><!--end sitebar-->
+    </div><!--end row-->
 
     </div><!--end container-->
 

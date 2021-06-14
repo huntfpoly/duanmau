@@ -1,10 +1,10 @@
 <div class="p-6">
-    {{--    <div class="flex items-center justify-end px-4 py-3 text-right sm:px-5">--}}
-    {{--        <x-jet-button wire:click.prevent="createShowModal">--}}
-    {{--            {{ __('Thêm mới') }}--}}
-    {{--        </x-jet-button>--}}
-    {{--    </div>--}}
+        <div class="flex items-center justify-end px-4 py-3 text-right sm:px-5">
+            <x-jet-input type="text" class="block mr-10" placeholder="Tìm kiếm" wire:model="search" />
+
+        </div>
     @if(Session::has('message'))
+
         <div class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold
         text-xs text-white uppercase tracking-widest">
             {{ Session::get('message') }}

@@ -10,7 +10,8 @@ class Comments extends Component
 {
     public $modalView =false;
     public $showCmt;
-    public $name =[];
+    public $name;
+    public $search;
 
     public function view($product_id)
     {
@@ -30,9 +31,10 @@ class Comments extends Component
 //        dd($this->showCmt);
         $comments = DB::table('comments')
             ->join('products', 'products.id', '=', 'comments.product_id')
+            ->where('products.name','like', '%' . $this->search . '%')
             ->select('comments.product_id', 'products.name','products.feature_img_path',
                 DB::raw('count(comments.product_id) as total_cmt'))
-            ->groupBy('comments.product_id')->limit(5)
+            ->groupBy('comments.product_id')->limit(8)
             ->get();
 
 //        dd($comments);

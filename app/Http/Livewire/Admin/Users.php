@@ -9,6 +9,7 @@ class Users extends Component
 {
     public $modalConfirmDeleteVisible;
     public $userID;
+    public $search;
 
     public function showConfirmDelete($id)
     {
@@ -24,7 +25,7 @@ class Users extends Component
 
     public function render()
     {
-        $users = User::paginate(5);
+        $users = User::where('name','like', '%' . $this->search . '%')->paginate(8);
         return view('livewire.admin.users', [
             'users' => $users
         ]);

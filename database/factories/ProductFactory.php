@@ -28,9 +28,9 @@ class ProductFactory extends Factory
         return [
             'name' => $product_name,
             'slug' => $slug,
-            'regular_price' => $this->faker->numberBetween(1000, 10000),
+            'regular_price' => $this->faker->numberBetween(2000000, 20000000),
             'description' => $this->faker->text(20),
-            'feature_img_path' => 'digital_' . $this->faker->unique()->numberBetween(1, 22) . '.jpg',
+            'feature_img_path' => 'product/digital_' . $this->faker->unique()->numberBetween(1, 22) . '.jpg',
             'category_id' => $this->faker->numberBetween(1, 5),
             'user_id' => $this->faker->numberBetween(1, 1)
         ];

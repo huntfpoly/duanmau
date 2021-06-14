@@ -1,6 +1,7 @@
 <div class="p-6">
 
     <div class="flex items-center justify-end px-4 py-3 text-right sm:px-5">
+        <x-jet-input type="text" class="block mr-10" placeholder="Tìm kiếm" wire:model="search" />
         <x-jet-button wire:click.prevent="createShowModal">
             {{ __('Thêm mới') }}
         </x-jet-button>
@@ -78,19 +79,20 @@
                                     {{ $pro->slug }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ $pro->regular_price }}
+                                    {{ number_format($pro->regular_price, 0, '.', '.') }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ $pro->sale_price }}
+                                    @if($pro->sale_price){{ number_format($pro->sale_price, 0, '.', '.') }}@endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <img src="{{ asset('storage/'.$pro->feature_img_path) }}" width="100px">
+                                    <img src=" {{ asset('storage/'.$pro->feature_img_path) }}" width="100px" alt="">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $pro->description }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $pro->category->name}}
+{{--                                    @dd($pro->category)--}}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $pro->user->name }}
@@ -107,7 +109,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center" colspan="4">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center" colspan="10">
                                     No data
                                 </td>
                             </tr>

@@ -24,10 +24,12 @@ Route::get('/home', function () {
 Route::get('/', \App\Http\Livewire\HomeComponent::class)->name('home');
 
 Route::get('/shop', \App\Http\Livewire\ShopComponent::class);
-Route::get('/cart', \App\Http\Livewire\CartComponent::class);
+Route::get('/cart', \App\Http\Livewire\CartComponent::class)->name('product.cart');
 Route::get('/checkout', \App\Http\Livewire\CheckoutComponent::class);
 
+Route::get('/product-category/{slug}', \App\Http\Livewire\ProductCategoryComponent::class)->name('product.category');
 Route::get('/product/{slug}', \App\Http\Livewire\DetailsComponent::class)->name('product.detail');
+Route::get('/search', \App\Http\Livewire\SearchComponent::class)->name('product.search');
 
 // For user or customer
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -65,19 +67,4 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
         })->name('admin.comments');
     });
 
-//    Route::prefix('/admin/categories')->group(function () {
-//        Route::get('/', \App\Http\Livewire\Admin\Category\AdminCategoryComponent::class)->name('admin.categories');
-//        Route::get('/add', \App\Http\Livewire\Admin\Category\AdminAddCategoryComponent::class)->name('admin.addcategories');
-//        Route::get('/edit/{slug}', \App\Http\Livewire\Admin\Category\AdminEditCategoryComponent::class)->name('admin.editcategories');
-//    });
-//    Route::prefix('/admin/products')->group(function (){
-//        Route::get('/', \App\Http\Livewire\Admin\Product\AdminProductComponent::class)->name('admin.products');
-//        Route::get('/add', \App\Http\Livewire\Admin\Product\AdminAddProductComponent::class)->name('admin.addproducts');
-//        Route::get('/edit/{id}', \App\Http\Livewire\Admin\Product\AdminEditProductComponent::class)->name('admin.editproducts');
-//    });
-//    Route::prefix('/admin/sliders')->group(function (){
-//        Route::get('/', \App\Http\Livewire\Admin\Slider\AdminSliderComponent::class)->name('admin.sliders');
-//        Route::get('/add', \App\Http\Livewire\Admin\Slider\AdminAddSliderComponent::class)->name('admin.addsliders');
-//        Route::get('/edit/{id}', \App\Http\Livewire\Admin\Slider\AdminEditSliderComponent::class)->name('admin.editslider');
-//    });
 });

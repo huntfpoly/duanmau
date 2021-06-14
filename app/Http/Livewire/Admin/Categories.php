@@ -13,6 +13,7 @@ class Categories extends Component
     public $modelId;
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
+    public $search;
 
     public function mount()
     {
@@ -156,7 +157,8 @@ class Categories extends Component
      */
     public function read()
     {
-        return Category::paginate(5);
+        return Category::where('name','like', '%' . $this->search . '%')->paginate(8);
+
     }
 
     public function render()

@@ -1,5 +1,6 @@
 <div class="p-6">
     <div class="flex items-center justify-end px-4 py-3 text-right sm:px-5">
+        <x-jet-input type="text" class="block mr-10" placeholder="Tìm kiếm" wire:model="search" />
         <x-jet-button wire:click.prevent="createShowModal">
             {{ __('Thêm mới') }}
         </x-jet-button>

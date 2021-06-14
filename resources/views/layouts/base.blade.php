@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title>home</title>
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
     <link
         href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext"
@@ -21,7 +21,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color-01.css') }}">
 
-    @livewireStyles
+    @livewireScripts
+
 </head>
 <body class="home-page home-01 ">
 
@@ -114,8 +115,8 @@
 
                     <div class="wrap-search center-section">
                         <div class="wrap-search-form">
-                            <form action="#" id="form-search-top" name="form-search-top">
-                                <input type="text" name="search" value="" placeholder="Search here...">
+                            <form action="{{ route('product.search') }}" id="form-search-top" name="form-search-top">
+                                <input type="text" name="search" value="" placeholder="Tìm kiếm sản phẩm...">
                                 <button form="form-search-top" type="button">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
@@ -159,7 +160,7 @@
                     <div class="container">
                         <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
                             <li class="menu-item home-icon">
-                                <a href="index.html" class="link-term mercado-item-title"><i class="fa fa-home"
+                                <a href="{{ url('/') }}" class="link-term mercado-item-title"><i class="fa fa-home"
                                                                                              aria-hidden="true"></i></a>
                             </li>
                             <li class="menu-item">

@@ -55,7 +55,8 @@
                 <div class="row">
 
                     <ul class="product-list grid-products equal-container">
-                        @foreach($products as $pro)
+
+                        @foreach($products_cate as $pro)
                             <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
                                 <div class="product product-style-3 equal-elem ">
                                     <div class="product-thumnail">
@@ -74,9 +75,7 @@
                                                 @else
                                                     <ins><p class="product-price">{{ number_format($pro->regular_price , 0, '.', '.')  }}</p></ins>
                                                 @endif</span></div>
-                                        <a href="#" class="btn add-to-cart"
-                                           wire:click.prevent="store({{ $pro->id}}, '{{ $pro->name }}' , {{ $pro->regular_price }}, '{{ $pro->feature_img_path }}')">Add
-                                            To Cart</a>
+                                        <a href="#" class="btn add-to-cart">Add To Cart</a>
                                     </div>
                                 </div>
                             </li>
@@ -86,7 +85,7 @@
                 </div>
 
                 <div class="wrap-pagination-info">
-                    {{ $products->links() }}
+                    {{ $products_cate->links() }}
                 </div>
             </div><!--end main products area-->
 
@@ -97,8 +96,7 @@
                         <ul class="list-category">
                             @foreach($categories as $cate)
                                 <li class="category-item text-uppercase">
-                                    <a href="{{ route('product.category', ['slug' => $cate->slug]) }}"
-                                       class="cate-link">{{ $cate->name }}</a>
+                                    <a href="{{ route('product.category', ['slug' => $cate->slug]) }}" class="cate-link">{{ $cate->name }}</a>
                                 </li>
                             @endforeach
                         </ul>

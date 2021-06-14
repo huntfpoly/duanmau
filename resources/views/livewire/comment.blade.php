@@ -9,14 +9,14 @@
                         id="li-comment-20">
                         <div id="comment-20" class="comment_container">
 
-                            <img alt="" src="#" height="80" width="80">
+                            <img alt="" src="{{ asset('storage/' . $cmt->user->profile_photo_path) }}" height="80" width="80">
 
                             <div class="comment-text">
                                 {{--                        <div class="star-rating">--}}
                                 {{--                            <span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>--}}
                                 {{--                        </div>--}}
                                 <p class="meta">
-                                    <strong class="woocommerce-review__author">admin</strong>
+                                    <strong class="woocommerce-review__author">{{ $cmt->user->name }}</strong>
                                     <span class="woocommerce-review__dash">–</span>
                                     <time class="woocommerce-review__published-date"
                                           datetime="2008-02-14 20:00">{{ $cmt->created_at }}

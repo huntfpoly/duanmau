@@ -26,6 +26,7 @@ class Products extends Component
     public $modelId;
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
+    public $search;
 
     public function mount()
     {
@@ -211,7 +212,8 @@ class Products extends Component
      */
     public function read()
     {
-        return Product::paginate(5);
+        return Product::where('name','like', '%' . $this->search . '%')->paginate(8);
+
     }
 
     public function render()

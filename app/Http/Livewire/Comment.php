@@ -26,6 +26,7 @@ class Comment extends Component
             'user_id' => $user_id,
             'product_id' => $this->product_id,
         ]);
+        $this->reset();
     }
 
     public function loadMore()
@@ -36,8 +37,7 @@ class Comment extends Component
     public function render()
     {
         $this->count = count(DB::table('comments')->where('product_id', $this->product_id)->get());
-        $this->comments = DB::table('comments')
-            ->where('product_id', $this->product_id)
+        $this->comments = \App\Models\comment::where('product_id', $this->product_id)
             ->orderBy('id', 'desc')->limit($this->perPage)->get();
 //        $this->emit('userStore');
         return view('livewire.comment', [
